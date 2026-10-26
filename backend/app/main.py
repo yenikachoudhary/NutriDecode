@@ -9,6 +9,7 @@ from app.api.ocr import router as ocr_router
 from app.api.ingredients import router as ingredients_router
 from app.api.analyze import router as analyze_router
 from app.api.evidence import router as evidence_router
+from app.api.products import router as products_router
 
 
 settings = get_settings()
@@ -54,6 +55,11 @@ app.include_router(
 
 app.include_router(
     evidence_router,
+    prefix=settings.api_v1_prefix,
+)
+
+app.include_router(
+    products_router,
     prefix=settings.api_v1_prefix,
 )
 
