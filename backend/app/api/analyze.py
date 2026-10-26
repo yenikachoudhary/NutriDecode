@@ -4,6 +4,7 @@ from fastapi import APIRouter, File, HTTPException, UploadFile
 from app.services.ocr_service import extract_text
 from app.services.ingredient_service import analyze_ingredients
 from app.services.evidence_service import get_additive_evidence
+from app.services.indian_name_service import resolve_indian_name
 
 router = APIRouter(prefix="/analyze", tags=["Full Analysis"])
 
@@ -29,7 +30,22 @@ async def analyze_food_label(file: UploadFile = File(...)):
             )
 
         # Stage 2: Recognize ingredients and additive codes.
+        
         ingredient_result = analyze_ingredients(extracted_text)
+        
+        # Stage 2.5: Resolve ingredient names using the Indian alias dictionary.
+        for ingredient in ingredient_result.get("ingredients", []):
+            original_name = ingredient.get("raw_text", "")
+            normalized_name = ingredient.get("normalized_name", "")
+
+            # Try the original OCR text first, then the normalized name.
+            resolution = resolve_indian_name(original_name)
+
+            if not resolution["matched"] and normalized_name:
+                resolution = resolve_indian_name(normalized_name)
+
+            ingredient["name_resolution"] = resolution
+
 
         # Stage 3: Attach source-linked evidence to each known additive.
         enriched_additives = []
