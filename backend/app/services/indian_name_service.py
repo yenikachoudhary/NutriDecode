@@ -1,177 +1,103 @@
 
+import json
 import re
+from pathlib import Path
 
 
-# Starter dictionary. These are curated aliases, not an exhaustive
-# dictionary of Indian regional ingredient names.
-ALIASES = {
-    "salt": ("salt", "English"),
-    "namak": ("salt", "Hindi/Urdu"),
-    "uppu": ("salt", "Tamil/Telugu/Kannada/Malayalam"),
-    "sugar": ("sugar", "English"),
-    "chini": ("sugar", "Hindi"),
-    "cheeni": ("sugar", "Hindi"),
-    "sakkarai": ("sugar", "Tamil"),
-    "sakkare": ("sugar", "Kannada"),
-    "chakkera": ("sugar", "Telugu"),
-    "chakkara": ("sugar", "Malayalam"),
-    "turmeric": ("turmeric", "English"),
-    "haldi": ("turmeric", "Hindi/Urdu"),
-    "manjal": ("turmeric", "Tamil/Malayalam"),
-    "pasupu": ("turmeric", "Telugu"),
-    "arishina": ("turmeric", "Kannada"),
-    "holud": ("turmeric", "Bengali"),
-    "halad": ("turmeric", "Marathi"),
-    "chilli": ("chilli pepper", "English"),
-    "chili": ("chilli pepper", "English"),
-    "mirch": ("chilli pepper", "Hindi/Urdu"),
-    "mirchi": ("chilli pepper", "Hindi/Marathi"),
-    "milagai": ("chilli pepper", "Tamil"),
-    "mirapakayalu": ("chilli pepper", "Telugu"),
-    "menasinakayi": ("chilli pepper", "Kannada"),
-    "mulaku": ("chilli pepper", "Malayalam"),
-    "lonka": ("chilli pepper", "Bengali"),
-    "cumin": ("cumin", "English"),
-    "jeera": ("cumin", "Hindi/Urdu"),
-    "seeragam": ("cumin", "Tamil"),
-    "jeelakarra": ("cumin", "Telugu"),
-    "jeerige": ("cumin", "Kannada"),
-    "coriander": ("coriander", "English"),
-    "dhania": ("coriander", "Hindi"),
-    "kothamalli": ("coriander", "Tamil"),
-    "kothimeera": ("coriander", "Telugu"),
-    "kottambari": ("coriander", "Kannada"),
-    "coconut oil": ("coconut oil", "English"),
-    "nariyal tel": ("coconut oil", "Hindi"),
-    "narial tel": ("coconut oil", "Hindi"),
-    "ginger": ("ginger", "English"),
-    "adrak": ("ginger", "Hindi/Urdu"),
-    "inji": ("ginger", "Tamil/Malayalam"),
-    "allam": ("ginger", "Telugu"),
-    "shunti": ("ginger", "Kannada"),
-    "garlic": ("garlic", "English"),
-    "lehsun": ("garlic", "Hindi"),
-    "poondu": ("garlic", "Tamil"),
-    "vellulli": ("garlic", "Telugu"),
-    "bellulli": ("garlic", "Kannada"),
-    "potato": ("potato", "English"),
-    "aloo": ("potato", "Hindi/Urdu"),
-    "urulai kizhangu": ("potato", "Tamil"),
-    "bangaladumpa": ("potato", "Telugu"),
-    "alugadde": ("potato", "Kannada"),
-    "onion": ("onion", "English"),
-    "pyaaz": ("onion", "Hindi/Urdu"),
-    "vengayam": ("onion", "Tamil"),
-    "ullipaya": ("onion", "Telugu"),
-    "eerulli": ("onion", "Kannada"),
-    "atta": ("whole wheat flour", "Hindi"),
-    "whole wheat flour": ("whole wheat flour", "English"),
-    "maida": ("refined wheat flour", "Hindi"),
-    "refined wheat flour": ("refined wheat flour", "English"),
-    
-    # Additional common Indian ingredient names
-    "methi": ("fenugreek", "Hindi"),
-    "vendhayam": ("fenugreek", "Tamil"),
-    "menthulu": ("fenugreek", "Telugu"),
-    "menthya": ("fenugreek", "Kannada"),
-
-    "saunf": ("fennel", "Hindi/Urdu"),
-    "perunjeeragam": ("fennel", "Tamil"),
-    "sompu": ("fennel", "Telugu"),
-    "badishep": ("fennel", "Marathi"),
-
-    "rai": ("mustard", "Hindi"),
-    "sarson": ("mustard", "Hindi/Punjabi"),
-    "kadugu": ("mustard", "Tamil"),
-    "avalu": ("mustard", "Telugu"),
-    "sasive": ("mustard", "Kannada"),
-
-    "kali mirch": ("black pepper", "Hindi"),
-    "milagu": ("black pepper", "Tamil"),
-    "miriyalu": ("black pepper", "Telugu"),
-    "kare menasu": ("black pepper", "Kannada"),
-
-    "elaichi": ("cardamom", "Hindi"),
-    "elakkai": ("cardamom", "Tamil"),
-    "yelakulu": ("cardamom", "Telugu"),
-    "elakki": ("cardamom", "Kannada"),
-
-    "dalchini": ("cinnamon", "Hindi"),
-    "pattai": ("cinnamon", "Tamil"),
-    "dalchina chekka": ("cinnamon", "Telugu"),
-    "lavangam": ("clove", "Tamil"),
-    "laung": ("clove", "Hindi"),
-    "lavangalu": ("clove", "Telugu"),
-
-    "hing": ("asafoetida", "Hindi"),
-    "perungayam": ("asafoetida", "Tamil"),
-    "inguva": ("asafoetida", "Telugu"),
-
-    "besan": ("chickpea flour", "Hindi"),
-    "kadalai maavu": ("chickpea flour", "Tamil"),
-    "senagapindi": ("chickpea flour", "Telugu"),
-
-    "chawal": ("rice", "Hindi"),
-    "arisi": ("rice", "Tamil"),
-    "biyyam": ("rice", "Telugu"),
-    "akki": ("rice", "Kannada"),
-
-    "doodh": ("milk", "Hindi/Urdu"),
-    "paal": ("milk", "Tamil/Malayalam"),
-    "paalu": ("milk", "Telugu"),
-    "haalu": ("milk", "Kannada"),
-
-    "dahi": ("curd", "Hindi"),
-    "thayir": ("curd", "Tamil"),
-    "perugu": ("curd", "Telugu"),
-    "mosaru": ("curd", "Kannada"),
-    "doi": ("curd", "Bengali"),
-
-    "ghee": ("ghee", "English/Hindi"),
-    "nei": ("ghee", "Tamil"),
-    "neyyi": ("ghee", "Telugu"),
-
-    "nimbu": ("lemon", "Hindi"),
-    "elumichai": ("lemon", "Tamil"),
-    "nimma": ("lemon", "Kannada"),
-    "nimmakaya": ("lemon", "Telugu"),
-
-    "tamatar": ("tomato", "Hindi/Urdu"),
-    "thakkali": ("tomato", "Tamil"),
-    "pandutamota": ("tomato", "Telugu"),
-
-}
+DATA_PATH = (
+    Path(__file__).resolve().parent.parent
+    / "data"
+    / "indian_ingredient_aliases.json"
+)
 
 
 def normalize_name(name: str) -> str:
-    """Normalize text for exact alias lookup."""
-
+    """Normalize text for consistent ingredient alias lookup."""
     value = name.casefold().strip()
     value = re.sub(r"[\s\-]+", " ", value)
     value = re.sub(r"^[^\w]+|[^\w]+$", "", value)
     return value
 
 
-def find_alias_match(normalized: str):
-    """Find an exact alias, or remove known descriptive words cautiously."""
+def _load_alias_data():
+    """Load aliases and their provenance metadata from JSON."""
+    if not DATA_PATH.is_file():
+        raise FileNotFoundError(
+            f"Ingredient alias dataset not found: {DATA_PATH}"
+        )
 
-    # Exact matches always take priority.
+    records = json.loads(DATA_PATH.read_text(encoding="utf-8"))
+
+    if not isinstance(records, list):
+        raise ValueError("Ingredient alias dataset must contain a JSON list.")
+
+    aliases = {}
+    metadata = {}
+
+    for record in records:
+        if not isinstance(record, dict):
+            raise ValueError("Each alias record must be a JSON object.")
+
+        alias = normalize_name(str(record.get("alias", "")))
+        canonical_name = str(record.get("canonical_name", "")).strip()
+        language = str(record.get("language", "")).strip()
+
+        if not alias or not canonical_name or not language:
+            continue
+
+        if alias in aliases:
+            existing_name = aliases[alias][0]
+            if existing_name != canonical_name:
+                raise ValueError(
+                    f"Conflicting canonical names for alias: {alias}"
+                )
+            continue
+
+        aliases[alias] = (canonical_name, language)
+        metadata[alias] = {
+            "source": record.get("source", "unspecified"),
+            "review_status": record.get(
+                "review_status", "needs_source_review"
+            ),
+        }
+
+    return aliases, metadata
+
+
+ALIASES, ALIAS_METADATA = _load_alias_data()
+
+
+def find_alias_match(normalized: str):
+    """Find an exact alias or cautiously remove known descriptors."""
+
+    # Exact matches take priority.
     if normalized in ALIASES:
-        return ALIASES[normalized], normalized, True
+        return ALIASES[normalized], normalized, False
 
     prefixes = {"organic", "pure", "natural", "fresh", "dried", "whole"}
     suffixes = {
-        "powder", "powdered", "ground", "crushed",
-        "dried", "fresh", "whole", "seeds", "seed",
-        "leaves", "leaf", "paste", "roasted",
+        "powder",
+        "powdered",
+        "ground",
+        "crushed",
+        "dried",
+        "fresh",
+        "whole",
+        "seeds",
+        "seed",
+        "leaves",
+        "leaf",
+        "paste",
+        "roasted",
     }
 
     words = normalized.split()
     if not words:
         return None, normalized, False
 
-    # Remove only recognized descriptors at the beginning or end.
+    original = normalized
     changed = True
+
     while changed and words:
         changed = False
 
@@ -186,15 +112,15 @@ def find_alias_match(normalized: str):
     candidate = " ".join(words)
 
     if candidate and candidate in ALIASES:
-        return ALIASES[candidate], candidate, candidate != normalized
+        return ALIASES[candidate], candidate, candidate != original
 
     return None, normalized, False
 
 
 def resolve_indian_name(name: str) -> dict:
-    """Resolve a known regional alias without guessing unknown terms."""
+    """Resolve a known alias without guessing unknown ingredient names."""
 
-    normalized = normalize_name(name)
+    normalized = normalize_name(name or "")
 
     if not normalized:
         return {
@@ -205,13 +131,16 @@ def resolve_indian_name(name: str) -> dict:
             "language": None,
             "confidence": 0.0,
             "status": "needs_review",
+            "source": None,
+            "review_status": None,
         }
-
 
     match, matched_alias, was_normalized = find_alias_match(normalized)
 
     if match:
         canonical_name, language = match
+        alias_metadata = ALIAS_METADATA.get(matched_alias, {})
+
         return {
             "input_name": name,
             "normalized_input": normalized,
@@ -225,8 +154,11 @@ def resolve_indian_name(name: str) -> dict:
                 if was_normalized
                 else "exact_dictionary_match"
             ),
+            "source": alias_metadata.get("source", "unspecified"),
+            "review_status": alias_metadata.get(
+                "review_status", "needs_source_review"
+            ),
         }
-
 
     return {
         "input_name": name,
@@ -236,4 +168,6 @@ def resolve_indian_name(name: str) -> dict:
         "language": None,
         "confidence": 0.0,
         "status": "needs_review",
+        "source": None,
+        "review_status": None,
     }

@@ -1,0 +1,835 @@
+[
+  {
+    "alias": "adrak",
+    "canonical_name": "ginger",
+    "language": "Hindi/Urdu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "akki",
+    "canonical_name": "rice",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "allam",
+    "canonical_name": "ginger",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "aloo",
+    "canonical_name": "potato",
+    "language": "Hindi/Urdu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "alugadde",
+    "canonical_name": "potato",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "arishina",
+    "canonical_name": "turmeric",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "arisi",
+    "canonical_name": "rice",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "atta",
+    "canonical_name": "whole wheat flour",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "avalu",
+    "canonical_name": "mustard",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "badishep",
+    "canonical_name": "fennel",
+    "language": "Marathi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "bangaladumpa",
+    "canonical_name": "potato",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "bellulli",
+    "canonical_name": "garlic",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "besan",
+    "canonical_name": "chickpea flour",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "biyyam",
+    "canonical_name": "rice",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "chakkara",
+    "canonical_name": "sugar",
+    "language": "Malayalam",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "chakkera",
+    "canonical_name": "sugar",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "chawal",
+    "canonical_name": "rice",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "cheeni",
+    "canonical_name": "sugar",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "chili",
+    "canonical_name": "chilli pepper",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "chilli",
+    "canonical_name": "chilli pepper",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "chini",
+    "canonical_name": "sugar",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "coconut oil",
+    "canonical_name": "coconut oil",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "coriander",
+    "canonical_name": "coriander",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "cumin",
+    "canonical_name": "cumin",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "dahi",
+    "canonical_name": "curd",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "dalchina chekka",
+    "canonical_name": "cinnamon",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "dalchini",
+    "canonical_name": "cinnamon",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "dhania",
+    "canonical_name": "coriander",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "doi",
+    "canonical_name": "curd",
+    "language": "Bengali",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "doodh",
+    "canonical_name": "milk",
+    "language": "Hindi/Urdu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "eerulli",
+    "canonical_name": "onion",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "elaichi",
+    "canonical_name": "cardamom",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "elakkai",
+    "canonical_name": "cardamom",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "elakki",
+    "canonical_name": "cardamom",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "elumichai",
+    "canonical_name": "lemon",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "garlic",
+    "canonical_name": "garlic",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "ghee",
+    "canonical_name": "ghee",
+    "language": "English/Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "ginger",
+    "canonical_name": "ginger",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "haalu",
+    "canonical_name": "milk",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "halad",
+    "canonical_name": "turmeric",
+    "language": "Marathi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "haldi",
+    "canonical_name": "turmeric",
+    "language": "Hindi/Urdu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "hing",
+    "canonical_name": "asafoetida",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "holud",
+    "canonical_name": "turmeric",
+    "language": "Bengali",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "inguva",
+    "canonical_name": "asafoetida",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "inji",
+    "canonical_name": "ginger",
+    "language": "Tamil/Malayalam",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "jeelakarra",
+    "canonical_name": "cumin",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "jeera",
+    "canonical_name": "cumin",
+    "language": "Hindi/Urdu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "jeerige",
+    "canonical_name": "cumin",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "kadalai maavu",
+    "canonical_name": "chickpea flour",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "kadugu",
+    "canonical_name": "mustard",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "kali mirch",
+    "canonical_name": "black pepper",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "kare menasu",
+    "canonical_name": "black pepper",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "kothamalli",
+    "canonical_name": "coriander",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "kothimeera",
+    "canonical_name": "coriander",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "kottambari",
+    "canonical_name": "coriander",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "laung",
+    "canonical_name": "clove",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "lavangalu",
+    "canonical_name": "clove",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "lavangam",
+    "canonical_name": "clove",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "lehsun",
+    "canonical_name": "garlic",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "lonka",
+    "canonical_name": "chilli pepper",
+    "language": "Bengali",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "maida",
+    "canonical_name": "refined wheat flour",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "manjal",
+    "canonical_name": "turmeric",
+    "language": "Tamil/Malayalam",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "menasinakayi",
+    "canonical_name": "chilli pepper",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "menthulu",
+    "canonical_name": "fenugreek",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "menthya",
+    "canonical_name": "fenugreek",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "methi",
+    "canonical_name": "fenugreek",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "milagai",
+    "canonical_name": "chilli pepper",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "milagu",
+    "canonical_name": "black pepper",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "mirapakayalu",
+    "canonical_name": "chilli pepper",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "mirch",
+    "canonical_name": "chilli pepper",
+    "language": "Hindi/Urdu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "mirchi",
+    "canonical_name": "chilli pepper",
+    "language": "Hindi/Marathi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "miriyalu",
+    "canonical_name": "black pepper",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "mosaru",
+    "canonical_name": "curd",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "mulaku",
+    "canonical_name": "chilli pepper",
+    "language": "Malayalam",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "namak",
+    "canonical_name": "salt",
+    "language": "Hindi/Urdu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "narial tel",
+    "canonical_name": "coconut oil",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "nariyal tel",
+    "canonical_name": "coconut oil",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "nei",
+    "canonical_name": "ghee",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "neyyi",
+    "canonical_name": "ghee",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "nimbu",
+    "canonical_name": "lemon",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "nimma",
+    "canonical_name": "lemon",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "nimmakaya",
+    "canonical_name": "lemon",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "onion",
+    "canonical_name": "onion",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "paal",
+    "canonical_name": "milk",
+    "language": "Tamil/Malayalam",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "paalu",
+    "canonical_name": "milk",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "pandutamota",
+    "canonical_name": "tomato",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "pasupu",
+    "canonical_name": "turmeric",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "pattai",
+    "canonical_name": "cinnamon",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "perugu",
+    "canonical_name": "curd",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "perungayam",
+    "canonical_name": "asafoetida",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "perunjeeragam",
+    "canonical_name": "fennel",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "poondu",
+    "canonical_name": "garlic",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "potato",
+    "canonical_name": "potato",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "pyaaz",
+    "canonical_name": "onion",
+    "language": "Hindi/Urdu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "rai",
+    "canonical_name": "mustard",
+    "language": "Hindi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "refined wheat flour",
+    "canonical_name": "refined wheat flour",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "sakkarai",
+    "canonical_name": "sugar",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "sakkare",
+    "canonical_name": "sugar",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "salt",
+    "canonical_name": "salt",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "sarson",
+    "canonical_name": "mustard",
+    "language": "Hindi/Punjabi",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "sasive",
+    "canonical_name": "mustard",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "saunf",
+    "canonical_name": "fennel",
+    "language": "Hindi/Urdu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "seeragam",
+    "canonical_name": "cumin",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "senagapindi",
+    "canonical_name": "chickpea flour",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "shunti",
+    "canonical_name": "ginger",
+    "language": "Kannada",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "sompu",
+    "canonical_name": "fennel",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "sugar",
+    "canonical_name": "sugar",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "tamatar",
+    "canonical_name": "tomato",
+    "language": "Hindi/Urdu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "thakkali",
+    "canonical_name": "tomato",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "thayir",
+    "canonical_name": "curd",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "turmeric",
+    "canonical_name": "turmeric",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "ullipaya",
+    "canonical_name": "onion",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "uppu",
+    "canonical_name": "salt",
+    "language": "Tamil/Telugu/Kannada/Malayalam",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "urulai kizhangu",
+    "canonical_name": "potato",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "vellulli",
+    "canonical_name": "garlic",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "vendhayam",
+    "canonical_name": "fenugreek",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "vengayam",
+    "canonical_name": "onion",
+    "language": "Tamil",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "whole wheat flour",
+    "canonical_name": "whole wheat flour",
+    "language": "English",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  },
+  {
+    "alias": "yelakulu",
+    "canonical_name": "cardamom",
+    "language": "Telugu",
+    "source": "manually_curated_prototype",
+    "review_status": "needs_source_review"
+  }
+]
