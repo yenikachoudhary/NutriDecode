@@ -3,7 +3,6 @@ import re
 
 import httpx
 from app.services.nutrition_score_service import calculate_nutrition_score
-from app.services.nutrition_score_service import calculate_nutrition_score
 
 OPEN_FOOD_FACTS_URL = "https://world.openfoodfacts.org/api/v2/product"
 
