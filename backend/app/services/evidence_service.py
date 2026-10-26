@@ -48,6 +48,7 @@ ADDITIVE_EVIDENCE = {
 def _build_assessment(additive: dict) -> dict:
     return {
         **deepcopy(additive),
+        "evidence_status": "identity_reference",
         "assessment_status": "insufficient_data",
         "identity_status": "catalogue_match_only",
         "short_term_effects": {
