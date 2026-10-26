@@ -30,6 +30,87 @@ REQUESTED_FIELDS = ",".join([
 ])
 
 
+async def fetch_from_upcitemdb(barcode: str, client: httpx.AsyncClient):
+    """Look up basic product details using UPCitemdb."""
+    url = "https://api.upcitemdb.com/prod/trial/lookup"
+
+    try:
+        response = await client.get(url, params={"upc": barcode})
+    except httpx.RequestError:
+        return None
+
+    if response.status_code == 404:
+        return None
+
+    response.raise_for_status()
+    payload = response.json()
+
+    if payload.get("code") != "OK":
+        return None
+
+    items = payload.get("items") or []
+    if not items:
+        return None
+
+    item = items[0]
+    images = item.get("images") or []
+
+    empty_nutrition = {
+        "energy_kcal": None,
+        "fat_g": None,
+        "saturated_fat_g": None,
+        "carbohydrates_g": None,
+        "sugars_g": None,
+        "fiber_g": None,
+        "proteins_g": None,
+        "salt_g": None,
+        "sodium_mg": None,
+    }
+
+    nutrition_score = calculate_nutrition_score({
+        "sugars_100g": None,
+        "saturated-fat_100g": None,
+        "salt_100g": None,
+        "fiber_100g": None,
+        "proteins_100g": None,
+    })
+
+    return {
+        "success": True,
+        "found": True,
+        "data_source": "UPCitemdb",
+        "data_source_url": "https://www.upcitemdb.com/",
+        "barcode": item.get("ean") or item.get("upc") or barcode,
+        "product": {
+            "name": item.get("title"),
+            "brands": item.get("brand"),
+            "quantity": None,
+            "countries": None,
+            "ingredients_text": None,
+            "ingredients_text_en": None,
+            "allergens": None,
+            "traces": None,
+            "front_image_url": images[0] if images else None,
+            "nutrition_per_100g": empty_nutrition,
+            "nutrition_score": nutrition_score,
+            "nutrition_grade": None,
+            "nova_group": None,
+            "additives_tags": [],
+            "last_modified_timestamp": None,
+        },
+        "data_quality": {
+            "ingredients_available": False,
+            "nutrition_available": False,
+            "warning": (
+                "Basic product details came from UPCitemdb. "
+                "Ingredient and nutrition information was not provided "
+                "by this fallback response. Upload the package label "
+                "to analyze its ingredients."
+            ),
+        },
+    }
+
+
 async def fetch_product_by_barcode(barcode: str) -> dict:
     """Look up a product using its barcode in Open Food Facts."""
 
@@ -45,27 +126,57 @@ async def fetch_product_by_barcode(barcode: str) -> dict:
         headers={"User-Agent": USER_AGENT},
         follow_redirects=True,
     ) as client:
-        response = await client.get(
-            f"{OPEN_FOOD_FACTS_URL}/{barcode}",
-            params={"fields": REQUESTED_FIELDS},
-        )
-        response.raise_for_status()
-        payload = response.json()
+        
+        try:
+            response = await client.get(
+                f"{OPEN_FOOD_FACTS_URL}/{barcode}",
+                params={"fields": REQUESTED_FIELDS},
+            )
 
+            if response.status_code == 404:
+                fallback = await fetch_from_upcitemdb(barcode, client)
+                if fallback:
+                    return fallback
+
+                return {
+                    "success": False,
+                    "found": False,
+                    "barcode": barcode,
+                    "message": (
+                        "Product not found in either database. "
+                        "Upload a photo of the ingredient label instead."
+                    ),
+                    "sources_checked": ["Open Food Facts", "UPCitemdb"],
+                }
+
+            response.raise_for_status()
+            payload = response.json()
+
+        except (httpx.RequestError, httpx.HTTPStatusError, ValueError):
+            fallback = await fetch_from_upcitemdb(barcode, client)
+            if fallback:
+                return fallback
+            raise
+
+
+    
     if payload.get("status") != 1 or not payload.get("product"):
+        fallback = await fetch_from_upcitemdb(barcode, client)
+
+        if fallback:
+            return fallback
+
         return {
             "success": False,
             "found": False,
             "barcode": barcode,
             "message": (
-                "This product was not found in Open Food Facts. "
-                "You can still upload its ingredient label for analysis."
+                "Product not found in either database. "
+                "Upload a photo of the ingredient label instead."
             ),
-            "source": {
-                "name": "Open Food Facts",
-                "url": "https://world.openfoodfacts.org/",
-            },
+            "sources_checked": ["Open Food Facts", "UPCitemdb"],
         }
+
 
     product = payload["product"]
     nutriments = product.get("nutriments") or {}
