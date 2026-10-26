@@ -2,7 +2,7 @@
 import re
 
 import httpx
-
+from app.services.nutrition_score_service import calculate_nutrition_score
 
 OPEN_FOOD_FACTS_URL = "https://world.openfoodfacts.org/api/v2/product"
 
@@ -95,6 +95,19 @@ async def fetch_product_by_barcode(barcode: str) -> dict:
         "sodium_mg": optional_number("sodium_100g"),
     }
 
+    
+    # Convert the existing API response fields to the scoring service's keys.
+    score_input = {
+        "sugars_100g": nutrition_per_100g["sugars_g"],
+        "saturated-fat_100g": nutrition_per_100g["saturated_fat_g"],
+        "salt_100g": nutrition_per_100g["salt_g"],
+        "fiber_100g": nutrition_per_100g["fiber_g"],
+        "proteins_100g": nutrition_per_100g["proteins_g"],
+    }
+
+    nutrition_score = calculate_nutrition_score(score_input)
+
+
     return {
         "success": True,
         "found": True,
@@ -112,6 +125,7 @@ async def fetch_product_by_barcode(barcode: str) -> dict:
             "traces": optional_text("traces"),
             "front_image_url": optional_text("image_front_url"),
             "nutrition_per_100g": nutrition_per_100g,
+            "nutrition_score": nutrition_score,
             "nutrition_grade": (
                 optional_text("nutrition_grades")
                 or optional_text("nutriscore_grade")
