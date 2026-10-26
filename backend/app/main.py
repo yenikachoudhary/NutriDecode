@@ -7,6 +7,7 @@ from app.core.config import get_settings
 
 from app.api.ocr import router as ocr_router
 from app.api.ingredients import router as ingredients_router
+from app.api.analyze import router as analyze_router
 
 
 settings = get_settings()
@@ -42,6 +43,11 @@ app.include_router(
 
 app.include_router(
     ingredients_router,
+    prefix=settings.api_v1_prefix,
+)
+
+app.include_router(
+    analyze_router,
     prefix=settings.api_v1_prefix,
 )
 
