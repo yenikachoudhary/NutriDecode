@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -10,6 +9,7 @@ from app.api.ingredients import router as ingredients_router
 from app.api.analyze import router as analyze_router
 from app.api.evidence import router as evidence_router
 from app.api.products import router as products_router
+from app.api.exposure import router as exposure_router
 
 
 settings = get_settings()
@@ -62,6 +62,12 @@ app.include_router(
     products_router,
     prefix=settings.api_v1_prefix,
 )
+
+app.include_router(
+    exposure_router,
+    prefix=settings.api_v1_prefix,
+)
+
 
 @app.get("/", tags=["Root"])
 def root() -> dict[str, str]:

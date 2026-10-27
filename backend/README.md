@@ -1,22 +1,19 @@
-
 # NutriDecode API
 
-Backend for NutriDecode 2.0, an evidence-based food ingredient
-analysis and consumer safety research platform.
+Backend for NutriDecode AI, an evidence-based food ingredient analysis, Indian regional alias resolution, and consumer safety research platform.
 
 ## Requirements
 
 - Python 3.11 or newer
 - pip
-- Git
+- Tesseract-OCR (v5+)
 
 ## Setup
 
-Create and activate a virtual environment from this directory.
-
-Windows PowerShell:
+Create and activate a virtual environment:
 
 ```powershell
+cd backend
 py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
@@ -24,37 +21,41 @@ py -3.11 -m venv .venv
 Install dependencies:
 
 ```powershell
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-Create `.env` using `.env.example` as a template.
-
-## Run the API
+Create `.env` using `.env.example`:
 
 ```powershell
-python -m uvicorn app.main:app --reload
+Copy-Item .env.example .env
 ```
 
-The development server runs at:
+## Running the API
 
-- API root: http://127.0.0.1:8000/
-- Health: http://127.0.0.1:8000/api/v1/health
-- Swagger UI: http://127.0.0.1:8000/docs
-- OpenAPI schema: http://127.0.0.1:8000/openapi.json
+```powershell
+python -m uvicorn app.main:app --reload --port 8000
+```
 
-## Run tests
+- API root: `http://127.0.0.1:8000/`
+- Health: `http://127.0.0.1:8000/api/v1/health`
+- Interactive OpenAPI Docs: `http://127.0.0.1:8000/docs`
+- Redoc Documentation: `http://127.0.0.1:8000/redoc`
+
+## Running Automated Tests
+
+Run all 40 automated pytest unit and integration tests:
 
 ```powershell
 python -m pytest -v
 ```
 
-## Current scope
+## API Modules
 
-- FastAPI application foundation
-- Environment-based configuration
-- CORS configuration for local frontend development
-- Root and health-check endpoints
-- Automated API tests
-
-OCR, ingredient intelligence, evidence retrieval, and interaction
-analysis will be implemented as separate modules.
+- `app/api/health.py`: Process health and environment check.
+- `app/api/ocr.py`: Image validation, CLAHE preprocessing, and Tesseract OCR.
+- `app/api/ingredients.py`: Ingredient parsing, additive regex extraction, and Indian alias resolution.
+- `app/api/analyze.py`: Combined multimodal image analysis and direct text re-analysis pipeline.
+- `app/api/evidence.py`: WHO/FAO JECFA chemical evaluations and FSSAI regulatory standards.
+- `app/api/exposure.py`: Quantitative dietary exposure calculator and ADI threshold simulator.
+- `app/api/products.py`: Barcode lookup querying Open Food Facts v2 with UPCitemdb fallback and in-memory TTL caching.

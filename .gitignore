@@ -1,0 +1,29 @@
+# Python virtual environments and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/.venv/
+backend/.venv-1/
+backend/venv/
+.pytest_cache/
+*.log
+
+# Node & Frontend build output
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+
+# Local environment configuration (keep examples committed)
+.env
+backend/.env
+frontend/.env
+!*.env.example
+
+# OS & Editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,6 +1,12 @@
+"""Dietary exposure calculation service.
+
+Calculates estimated additive intake per serving, daily intake, and exposure
+per kilogram of body weight, then compares it against an applicable ADI.
+"""
 
 from math import isfinite
 from typing import Any
+from app.services.evidence_service import ADDITIVE_EVIDENCE, get_additive_evidence
 
 
 def _positive_number(value: Any, field: str, *, allow_zero: bool = False) -> float:
@@ -31,8 +37,8 @@ def calculate_exposure(
 ) -> dict:
     """Estimate additive exposure and compare it with a supplied ADI.
 
-    Concentration must be in mg/kg of food.
-    ADI must be a verified, applicable reference value from a reliable source.
+    Concentration must be in mg/kg of food matrix.
+    ADI must be a verified, applicable reference value from an authoritative source (e.g. JECFA).
     """
 
     concentration = _positive_number(
@@ -60,19 +66,54 @@ def calculate_exposure(
         "adi_mg_per_kg_body_weight_day": adi,
         "adi_percentage": round(adi_percentage, 2),
         "interpretation": (
-            "Estimated exposure is above the supplied ADI reference. "
-            "Review total dietary exposure, assumptions, and the applicable "
-            "scientific guidance."
+            "Estimated exposure is above the supplied ADI reference value. "
+            "Review total cumulative dietary exposure, input assumptions, and applicable "
+            "scientific guidance. This is not a diagnosis or proof of toxicity."
             if adi_percentage > 100
             else
-            "Estimated exposure is at or below the supplied ADI reference. "
-            "This comparison alone does not establish that the product is "
-            "safe or assess other hazards."
+            "Estimated exposure is at or below the supplied ADI reference value. "
+            "This comparison alone does not establish that the entire product is safe "
+            "or address other health or nutritional factors."
         ),
         "limitations": [
-            "The concentration and ADI must be verified from reliable sources.",
-            "Other dietary sources may increase total exposure.",
-            "The result depends on the serving size and consumption frequency.",
-            "An ADI comparison is not a guarantee of safety or a medical diagnosis.",
+            "The concentration and ADI must be verified from authoritative, substance-specific sources.",
+            "Packaged food labels generally do not declare precise additive concentrations; values must be tested or regulatory limits.",
+            "Other dietary sources of the same additive may increase total daily exposure.",
+            "An ADI comparison is a preliminary risk-characterisation tool, not a guarantee of safety or a medical diagnosis.",
         ],
     }
+
+
+def get_reference_adi_for_additive(additive_code: str) -> dict | None:
+    """Look up verified ADI details for an additive from the evidence database."""
+    record = get_additive_evidence(additive_code)
+    if not record:
+        return None
+
+    adi = record.get("adi", {})
+    return {
+        "code": record.get("code"),
+        "name": record.get("name"),
+        "ins_number": record.get("ins_number"),
+        "adi_value_numeric": adi.get("value"),
+        "adi_status": adi.get("status"),
+        "adi_text": adi.get("text"),
+        "unit": adi.get("unit"),
+        "source": adi.get("evaluation_reference"),
+        "is_calculable": adi.get("status") == "numeric",
+        "note": (
+            "Numeric ADI is available for exposure calculation."
+            if adi.get("status") == "numeric"
+            else "JECFA has designated this substance as 'ADI not specified', meaning toxicological testing established that intake under Good Manufacturing Practice does not represent a dietary hazard."
+        ),
+    }
+
+
+def list_available_reference_adis() -> list[dict]:
+    """List all additives in catalogue with ADI summary for calculator UI."""
+    results = []
+    for code in sorted(ADDITIVE_EVIDENCE.keys()):
+        adi_info = get_reference_adi_for_additive(code)
+        if adi_info:
+            results.append(adi_info)
+    return results

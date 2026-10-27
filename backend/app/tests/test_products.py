@@ -1,8 +1,14 @@
-
 import httpx
 import pytest
 
-from app.services.product_service import fetch_product_by_barcode
+from app.services.product_service import fetch_product_by_barcode, clear_cache
+
+
+@pytest.fixture(autouse=True)
+def clean_product_cache():
+    clear_cache()
+    yield
+    clear_cache()
 
 
 class FakeResponse:
@@ -137,3 +143,32 @@ async def test_uses_upcitemdb_when_open_food_facts_returns_404(
     assert result["data_source"] == "UPCitemdb"
     assert result["product"]["name"] == "Fallback Snack"
     assert result["data_quality"]["ingredients_available"] is False
+
+
+@pytest.mark.asyncio
+async def test_serves_repeated_lookup_from_cache(monkeypatch):
+    responses = [
+        FakeResponse({
+            "status": 1,
+            "product": {
+                "code": "99998888",
+                "product_name": "Cached Snack",
+                "nutriments": {"sugars_100g": 1.0},
+            },
+        })
+    ]
+
+    class MockClient(FakeClient):
+        async def get(self, *args, **kwargs):
+            return responses.pop(0)
+
+    monkeypatch.setattr(httpx, "AsyncClient", MockClient)
+
+    first = await fetch_product_by_barcode("99998888")
+    assert first["found"] is True
+    assert first["product"]["name"] == "Cached Snack"
+
+    # Second lookup should come from cache without calling MockClient.get
+    second = await fetch_product_by_barcode("99998888")
+    assert second["found"] is True
+    assert second["from_cache"] is True
